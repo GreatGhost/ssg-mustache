@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>我是index文件.js</h1>
+    <script src="/xuni/bundle.js"></script>
+    <div id="container"></div>
+    <script>
+
+        // 模板一
+          var data={
+           arr:[
+            {name:"小红",sex:'女',age:22,jobs:['游泳','计算机']},
+            {name:'小黄',sex:'男',age:18,jobs:['游泳','计算机']},
+            {name:'小黑',sex:'男',age:22,jobs:['游泳','计算机']}
+        ]
+       }
+        var template=`
+        <ul>
+                {{#arr}}
+                    <li>
+                       <h5 class="titile">{{name}}的基本信息</h5>
+                       <p>姓名：{{name}}</p>
+                       <p>性别：{{sex}}</p>
+                       <p>年龄:{{age}}</p>
+                       <ol>
+                            {{#jobs}}
+                                <li>{{.}}</li>
+                            {{/jobs}}
+                        </ol>
+                    </li>
+                {{/arr}}
+            </ul>
+        `
+
+        // var data={
+        //     somebody:'尚硅谷',
+        //     a:{
+        //         b:{
+        //             c:100
+        //         }
+        //     }
+        // }
+        // var template='<h1>我爱{{somebody}},{{somebody}}也爱我{{a.b.c}}<h1/>'
+
+            // 模板二
+            // var data={
+            //     fruits:[
+            //             '苹果',
+            //             '鸭梨',
+            //             '香蕉'
+            //     ]
+            // }
+            // var template=`
+            //     <div>
+            //         <ul>
+            //             {{#fruits}} 
+            //                 {{.}}
+            //             {{/fruits}}
+            //         </ul>    
+            //     </div>
+            // `
+
+
+            // 模板三
+            // var data={
+            //     students:[
+            //         {"name":"小明","age":22,"sex":"男"}
+            //     ]
+            // }
+            // var template=`
+            //     <div>
+            //         <ul>
+            //             {{#students}} 
+            //                 <li>姓名{{name}}</li>
+            //                 <li>年龄:{{age}}</li>
+            //                 <li>性别:{{sex}}</li>
+            //             {{/students}}
+            //         </ul>    
+            //     </div>
+            // `
+        var domStr=SSG_TemplateEngine.render(template,data);
+        var container=document.querySelector("#container")
+        container.innerHTML=domStr;
+    </script>
+</body>
+</html>
